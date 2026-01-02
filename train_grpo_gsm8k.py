@@ -61,6 +61,8 @@ def main():
     tokenizer = AutoTokenizer.from_pretrained(MODEL_ID, **token_kwargs)
     if tokenizer.pad_token_id is None:
         tokenizer.pad_token_id = tokenizer.eos_token_id
+    # Work around GRPOTrainer expecting padding_value before BaseTrainer init.
+    ed.GRPOTrainer.padding_value = tokenizer.pad_token_id
 
     model = ed.AutoEasyDeLModelForCausalLM.from_pretrained(
         MODEL_ID,
