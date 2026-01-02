@@ -8,6 +8,7 @@ if ! python3 -m venv .venv; then
 fi
 source .venv/bin/activate
 python3 -m pip install --upgrade pip
+python3 -m pip install torch --index-url https://download.pytorch.org/whl/cpu
 python3 -m pip install -r requirements.txt
 
 python3 train_grpo_gsm8k.py
