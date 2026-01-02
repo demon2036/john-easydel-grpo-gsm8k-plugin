@@ -16,6 +16,10 @@ pip install -r requirements.txt
 python train_grpo_gsm8k.py
 ```
 
+## TPU runtime version
+
+Use `v6e-ubuntu-2404` (from `gcloud compute tpus tpu-vm versions list --zone=europe-west4-a`).
+
 ## Environment overrides
 
 ```bash
