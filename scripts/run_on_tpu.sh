@@ -1,14 +1,19 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-if ! python3 -m venv .venv; then
+PYTHON_BIN="python3"
+if command -v python3.12 >/dev/null 2>&1; then
+  PYTHON_BIN="python3.12"
+fi
+
+if ! "$PYTHON_BIN" -m venv .venv; then
   sudo apt-get update -y
   sudo apt-get install -y python3-venv python3.12-venv
-  python3 -m venv .venv
+  "$PYTHON_BIN" -m venv .venv
 fi
 source .venv/bin/activate
-python3 -m pip install --upgrade pip
-python3 -m pip install torch --index-url https://download.pytorch.org/whl/cpu
-python3 -m pip install -r requirements.txt
+python -m pip install --upgrade pip
+python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+python -m pip install -r requirements.txt
 
-python3 train_grpo_gsm8k.py
+python train_grpo_gsm8k.py
