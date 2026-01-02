@@ -1,0 +1,7 @@
+--find-links https://storage.googleapis.com/jax-releases/libtpu_releases.html
+jax[tpu]
+easydel @ git+https://github.com/erfanzar/EasyDeL.git
+transformers
+datasets
+sentencepiece
+tiktoken
