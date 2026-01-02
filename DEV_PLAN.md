@@ -19,9 +19,9 @@
    - `gh repo create --source . --public --push`（如 repo 已存在则 `git push`）
 4. 确认 v6e 运行时镜像版本：
    - `gcloud compute tpus tpu-vm versions list --zone=europe-west4-a`
-   - 使用 `v6e-ubuntu-2404`
-5. 新建 TPU：
-   - `gcloud compute tpus tpu-vm create <TPU_NAME> --zone=europe-west4-a --accelerator-type=v6e-8 --version=v6e-ubuntu-2404`
+   - 使用 `v2-alpha-tpuv6e`
+5. 新建 TPU（spot）：
+   - `gcloud alpha compute tpus tpu-vm create <TPU_NAME> --zone=europe-west4-a --accelerator-type=v6e-8 --version=v2-alpha-tpuv6e --spot`
 6. TPU 拉取并运行：
    - `gcloud compute tpus tpu-vm ssh <TPU_NAME> --zone=europe-west4-a --command 'git clone <REPO> && cd <REPO> && ./scripts/run_on_tpu.sh'`
 7. 验证输出：

@@ -18,7 +18,7 @@ python train_grpo_gsm8k.py
 
 ## TPU runtime version
 
-Use `v6e-ubuntu-2404` (from `gcloud compute tpus tpu-vm versions list --zone=europe-west4-a`).
+Use `v2-alpha-tpuv6e` (from `gcloud compute tpus tpu-vm versions list --zone=europe-west4-a`).
 
 ## Environment overrides
 
