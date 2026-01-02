@@ -94,7 +94,7 @@ def main():
         top_k=50,
         beta=0.04,
         learning_rate=1e-6,
-        scheduler=ed.EasyDeLSchedulers.LINEAR,
+        scheduler=ed.EasyDeLSchedulers.NONE,
         num_train_epochs=1,
         report_steps=1,
         save_steps=None,
