@@ -20,12 +20,14 @@ python train_grpo_gsm8k.py
 
 ```bash
 # Optional overrides
-export MODEL_ID=Qwen/Qwen3-1.7B-Instruct
+export MODEL_ID=Qwen/Qwen3-1.7B
 export MAX_TRAINING_STEPS=10
 export MAX_PROMPT_LENGTH=512
 export MAX_COMPLETION_LENGTH=256
 export TOTAL_BATCH_SIZE=8
 export NUM_RETURN_SEQUENCES=2
+# If the model is gated/private:
+export HF_TOKEN=hf_your_token_here
 ```
 
 ## Notes

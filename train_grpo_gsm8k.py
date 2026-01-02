@@ -6,7 +6,8 @@ import jax.numpy as jnp
 from datasets import load_dataset
 from transformers import AutoTokenizer
 
-MODEL_ID = os.environ.get("MODEL_ID", "Qwen/Qwen3-1.7B-Instruct")
+MODEL_ID = os.environ.get("MODEL_ID", "Qwen/Qwen3-1.7B")
+HF_TOKEN = os.environ.get("HF_TOKEN")
 MAX_TRAINING_STEPS = int(os.environ.get("MAX_TRAINING_STEPS", "10"))
 MAX_PROMPT_LENGTH = int(os.environ.get("MAX_PROMPT_LENGTH", "512"))
 MAX_COMPLETION_LENGTH = int(os.environ.get("MAX_COMPLETION_LENGTH", "256"))
@@ -56,7 +57,8 @@ def build_dataset():
 
 
 def main():
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_ID)
+    token_kwargs = {"token": HF_TOKEN} if HF_TOKEN else {}
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_ID, **token_kwargs)
     if tokenizer.pad_token_id is None:
         tokenizer.pad_token_id = tokenizer.eos_token_id
 
@@ -73,6 +75,7 @@ def main():
             gradient_checkpointing=ed.EasyDeLGradientCheckPointers.NOTHING_SAVEABLE,
         ),
         partition_axis=ed.PartitionAxis(),
+        **token_kwargs,
     )
 
     config = ed.GRPOConfig(
