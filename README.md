@@ -22,7 +22,7 @@ python train_grpo_gsm8k.py
 # Optional overrides
 export MODEL_ID=Qwen/Qwen3-1.7B
 export MAX_TRAINING_STEPS=10
-export MAX_PROMPT_LENGTH=512
+export MAX_PROMPT_LENGTH=256
 export MAX_COMPLETION_LENGTH=256
 export TOTAL_BATCH_SIZE=8
 export NUM_RETURN_SEQUENCES=2

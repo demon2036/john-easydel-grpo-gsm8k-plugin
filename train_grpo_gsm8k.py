@@ -9,7 +9,7 @@ from transformers import AutoTokenizer
 MODEL_ID = os.environ.get("MODEL_ID", "Qwen/Qwen3-1.7B")
 HF_TOKEN = os.environ.get("HF_TOKEN")
 MAX_TRAINING_STEPS = int(os.environ.get("MAX_TRAINING_STEPS", "10"))
-MAX_PROMPT_LENGTH = int(os.environ.get("MAX_PROMPT_LENGTH", "512"))
+MAX_PROMPT_LENGTH = int(os.environ.get("MAX_PROMPT_LENGTH", "256"))
 MAX_COMPLETION_LENGTH = int(os.environ.get("MAX_COMPLETION_LENGTH", "256"))
 TOTAL_BATCH_SIZE = int(os.environ.get("TOTAL_BATCH_SIZE", "8"))
 NUM_RETURN_SEQUENCES = int(os.environ.get("NUM_RETURN_SEQUENCES", "2"))
@@ -73,7 +73,7 @@ def main():
         auto_shard_model=True,
         sharding_axis_dims=(1, 1, 1, -1, 1),
         config_kwargs=ed.EasyDeLBaseConfigDict(
-            attn_mechanism=ed.AttentionMechanisms.AUTO,
+            attn_mechanism=ed.AttentionMechanisms.VANILLA,
             gradient_checkpointing=ed.EasyDeLGradientCheckPointers.NOTHING_SAVEABLE,
         ),
         partition_axis=ed.PartitionAxis(),
